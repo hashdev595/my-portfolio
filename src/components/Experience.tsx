@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const experiences = [
     {
       company: "Oz Techwork, Lahore",
@@ -46,24 +48,38 @@ const experiences = [
   export default function Experience() {
     return (
       <section className="py-12">
-        <h2 className="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">
+        <h2 className="text-2xl font-semibold mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">
           Experience
         </h2>
         <div className="space-y-8">
           {experiences.map((exp, idx) => (
-            <div key={idx} className="bg-secondary p-5 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold">{exp.company}</h3>
-              <p className="italic">{exp.role}</p>
-              <p className="text-sm text-gray-400">{exp.duration}</p>
-              <ul className="list-disc ml-6 mt-2 space-y-1 text-gray-300">
+            <motion.div 
+              key={idx} 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ 
+                duration: 0.5,
+                delay: idx * 0.1,
+                ease: "easeOut"
+              }}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.2 }
+              }}
+              className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+            >
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">{exp.company}</h3>
+              <p className="italic text-sm text-gray-600 dark:text-gray-400">{exp.role}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{exp.duration}</p>
+              <ul className="list-disc ml-6 mt-2 space-y-1 text-gray-700 dark:text-gray-300">
                 {exp.details.map((d, i) => (
                   <li key={i}>{d}</li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
     );
   }
-  

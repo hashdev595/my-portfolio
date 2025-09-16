@@ -4,7 +4,7 @@ export default function Contact() {
         <h2 className="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">
           Contact
         </h2>
-        <p className="text-gray-300">
+        <p className="text-primary-300">
           I’m always open to discussing new projects, collaborations, or
           opportunities. Feel free to reach out!
         </p>

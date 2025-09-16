@@ -27,14 +27,9 @@ const skills = [
 export default function Skills() {
     return (
         <section className="py-12">
-            <motion.h2 
-                initial={{ x: -20 }}
-                animate={{ x: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2"
-            >
+            <h2 className="text-2xl font-semibold mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">
                 Skills
-            </motion.h2>
+            </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {skills.map((skill, idx) => (
                     <motion.div
@@ -52,11 +47,11 @@ export default function Skills() {
                             delay: idx * 0.05
                         }}
                         whileHover={{ 
-                            scale: 1.1,
-                            backgroundColor: "#2d2d2d",
+                            scale: 1.05,
                             transition: { duration: 0.2 }
                         }}
-                        className="bg-secondary px-4 py-2 rounded-lg shadow text-center text-gray-300"
+                        className="bg-white dark:bg-gray-800 px-4 py-2 rounded-lg shadow-md hover:shadow-lg 
+                                 text-center text-gray-900 dark:text-gray-300 transition-all duration-300"
                     >
                         {skill}
                     </motion.div>

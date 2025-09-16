@@ -66,7 +66,7 @@ const projects = [
   export default function Projects() {
     return (
       <section className="py-12">
-        <h2 className="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">
+        <h2 className="text-2xl font-semibold mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">
           Projects
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
@@ -77,29 +77,29 @@ const projects = [
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ 
-                  duration: 0.5,
-                  delay: idx * 0.1,
-                  ease: "easeOut"
+                duration: 0.5,
+                delay: idx * 0.1,
+                ease: "easeOut"
               }}
               whileHover={{ 
-                  scale: 1.05,
-                  transition: { duration: 0.2 }
+                scale: 1.02,
+                transition: { duration: 0.2 }
               }}
-              className="bg-secondary p-5 rounded-lg shadow-md"
+              className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
             >
-              <h3 className="text-xl font-bold">{proj.name}</h3>
-              <p className="italic text-sm text-gray-400">{proj.type}</p>
-              <p className="mt-2 text-gray-300">{proj.description}</p>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">{proj.name}</h3>
+              <p className="italic text-sm text-gray-600 dark:text-gray-400">{proj.type}</p>
+              <p className="mt-2 text-gray-700 dark:text-gray-300">{proj.description}</p>
               {proj.link && (
                 <motion.a
                   href={proj.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block mt-3 text-blue-400 hover:underline"
+                  className="inline-block mt-3 text-blue-600 dark:text-blue-400 hover:underline"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  View Project
+                  View Project →
                 </motion.a>
               )}
             </motion.div>
