@@ -10,65 +10,83 @@ export default function About() {
     'Developer': { typo: 'Devloper', backspace: 3 },
     'specializing': { typo: 'specializzing', backspace: 4 },
     'collaboration.': { typo: 'colaboration', backspace: 4 },
+    // 'applications': { typo: 'aplications', backspace: 3 },
   };
 
   useEffect(() => {
     let currentIndex = 0;
-    let timeouts: ReturnType<typeof setTimeout>[] = [];
+    let isCorrectingTypo = false;
+    // Use number instead of NodeJS.Timeout for browser compatibility
+    let timeouts: number[] = [];
 
     const type = () => {
-      if (currentIndex >= aboutText.length) {
-        setIsTyping(false);
-        return;
-      }
+      if (currentIndex <= aboutText.length) {
+        const currentText = aboutText.slice(0, currentIndex);
+        const currentWord = currentText.split(' ').pop() || '';
 
-      const currentChar = aboutText[currentIndex];
-      setDisplayedText(prev => prev + currentChar);
-      currentIndex++;
-
-      // Check if we're at the start of a word that might have a typo
-      const words = aboutText.slice(0, currentIndex).split(' ');
-      const currentWord = words[words.length - 1];
-      
-      Object.entries(typos).forEach(([correct, { typo }]) => {
-        if (currentWord === correct.slice(0, currentWord.length) && 
-            currentWord.length >= 3 && 
-            Math.random() < 0.3) { // 30% chance to trigger typo
-          
-          // Wait a bit then introduce the typo
-          const typoTimeout = setTimeout(() => {
-            setDisplayedText(prev => {
-              const base = prev.slice(0, -currentWord.length);
-              return base + typo;
-            });
-
-            // Then correct it after a delay
-            const correctionTimeout = setTimeout(() => {
-              setDisplayedText(prev => {
-                const base = prev.slice(0, -typo.length);
-                return base + correct;
-              });
-            }, 800);
+        // Check for typos
+        Object.entries(typos).forEach(([correct, { typo }]) => {
+          if (correct.startsWith(currentWord) && currentWord.length >= 3 && !isCorrectingTypo) {
+            isCorrectingTypo = true;
             
-            timeouts.push(correctionTimeout);
-          }, 500);
-          
-          timeouts.push(typoTimeout);
-          return;
-        }
-      });
+            // Type the typo first
+            const wrongText = currentText.slice(0, -currentWord.length) + typo;
+            setDisplayedText(wrongText);
 
-      const nextCharTimeout = setTimeout(type, Math.random() * 50 + 30);
-      timeouts.push(nextCharTimeout);
+            // Wait before starting backspace
+            const backspaceDelay = window.setTimeout(() => {
+              let tempText = wrongText;
+              
+              // Backspace the wrong part
+              const backspaceInterval = window.setInterval(() => {
+                if (tempText.length > currentText.length - currentWord.length) {
+                  tempText = tempText.slice(0, -1);
+                  setDisplayedText(tempText);
+                } else {
+                  clearInterval(backspaceInterval);
+                  
+                  // Type the correct version
+                  let correctIndex = 0;
+                  const typeCorrect = window.setInterval(() => {
+                    if (correctIndex <= correct.length) {
+                      setDisplayedText(tempText + correct.slice(0, correctIndex));
+                      correctIndex++;
+                    } else {
+                      clearInterval(typeCorrect);
+                      isCorrectingTypo = false;
+                      currentIndex = currentText.length + correct.length;
+                      setTimeout(type, 100);
+                    }
+                  }, 50);
+                  timeouts.push(typeCorrect);
+                }
+              }, 50);
+              timeouts.push(backspaceInterval);
+            }, 800);
+            timeouts.push(backspaceDelay);
+          }
+        });
+
+        if (!isCorrectingTypo) {
+          setDisplayedText(currentText);
+          currentIndex++;
+          const nextChar = window.setTimeout(type, 50);
+          timeouts.push(nextChar);
+        }
+      } else {
+        setIsTyping(false);
+      }
     };
 
-    const initialTimeout = setTimeout(type, 100);
-    timeouts.push(initialTimeout);
+    type();
 
     return () => {
-      timeouts.forEach(timeout => clearTimeout(timeout));
+      timeouts.forEach(timeout => {
+        clearTimeout(timeout);
+        clearInterval(timeout);
+      });
     };
-  }, [aboutText]); // Added aboutText as dependency
+  }, []);
 
   return (
     <section className="py-12">
