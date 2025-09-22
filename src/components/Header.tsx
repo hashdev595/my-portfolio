@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
-import { FaSun, FaMoon } from 'react-icons/fa';
+import { FaSun, FaMoon, FaDownload } from 'react-icons/fa';
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -103,13 +103,26 @@ export default function Header() {
                 </div>
             </div>
             
-            <button
-                onClick={toggleTheme}
-                className="p-2 rounded-full border border-brand-orange/30 hover:bg-brand-orange/10 transition-colors"
-                aria-label="Toggle theme"
-            >
-                {theme === 'light' ? <FaMoon size={20} /> : <FaSun size={20} />}
-            </button>
+            <div className="flex items-center gap-4">
+                {/* Download Resume */}
+                <a
+                    href="/assets/ReactNativeCV.pdf"
+                    download
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg border border-brand-orange/30 hover:bg-brand-orange/10 transition-colors text-sm font-medium"
+                >
+                    <FaDownload size={16} />
+                    Resume
+                </a>
+
+                {/* Theme Toggle */}
+                <button
+                    onClick={toggleTheme}
+                    className="p-2 rounded-full border border-brand-orange/30 hover:bg-brand-orange/10 transition-colors"
+                    aria-label="Toggle theme"
+                >
+                    {theme === 'light' ? <FaMoon size={20} /> : <FaSun size={20} />}
+                </button>
+            </div>
         </motion.header>
     );
 }
