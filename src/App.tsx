@@ -1,10 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import type { Variants } from "framer-motion";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
 import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -56,32 +58,60 @@ const sections: SectionItem[] = [
 ];
 
 const App = (): JSX.Element => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const t = setTimeout(() => setLoading(false), 1200);
+    return () => clearTimeout(t);
+  }, []);
   return (
     <ThemeProvider>
-      <div className="bg-primary text-accent font-sans transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
-        <Header />
+      <div className="bg-primary text-accent font-sans transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100 my-10">
         <AnimatePresence>
-          <motion.main
-            className="px-6 md:px-16 lg:px-24 pt-40 overflow-hidden" // Added overflow-hidden
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            {sections.map(({ Component, id }) => (
+          {loading && (
+            <motion.div
+              key="splash"
+              className="fixed inset-0 z-[80] flex items-center justify-center bg-white dark:bg-gray-900"
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+            >
               <motion.div
-                key={id}
-                variants={sectionVariants}
-                viewport={{
-                  once: true,
-                  margin: "-100px", // Trigger animation slightly before section is in view
-                }}
-                className="mb-16" // Added margin bottom for spacing
-              >
-                <Component />
-              </motion.div>
-            ))}
-          </motion.main>
+                className="w-16 h-16 rounded-full border-4 border-brand-orange border-t-transparent"
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+              />
+            </motion.div>
+          )}
         </AnimatePresence>
+        <Header />
+        <div className="px-6 md:px-10 lg:px-16 pt-40">
+          <div className="grid md:grid-cols-12 gap-6">
+            <Sidebar />
+            <AnimatePresence>
+              <motion.main
+                className="md:col-span-8 lg:col-span-9 xl:col-span-9 overflow-visible"
+                initial="hidden"
+                animate="visible"
+                variants={containerVariants}
+              >
+                {sections.map(({ Component, id }) => (
+                  <motion.div
+                    key={id}
+                    id={id}
+                    variants={sectionVariants}
+                    viewport={{
+                      once: true,
+                      margin: "-100px", // Trigger animation slightly before section is in view
+                    }}
+                    className="mb-16 overflow-visible" // Added margin bottom for spacing
+                  >
+                    <Component />
+                  </motion.div>
+                ))}
+              </motion.main>
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
     </ThemeProvider>
   );

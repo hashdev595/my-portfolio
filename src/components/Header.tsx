@@ -32,7 +32,7 @@ export default function Header() {
 
     return (
         <motion.header 
-            className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-lg fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-colors duration-300"
+            className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-lg fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-colors duration-300 border-b border-brand-orange/20"
             style={{
                 height,
                 opacity
@@ -62,13 +62,19 @@ export default function Header() {
                 
                 <div>
                     <motion.h1 
-                        className="font-bold"
+                        className="font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-brand-orange via-brand-orange to-brand-orange/70"
                         animate={{
                             fontSize: isScrolled ? '1.5rem' : '2rem'
                         }}
                     >
                         Hashim Ali
                     </motion.h1>
+                    <motion.div
+                        initial={false}
+                        animate={{ width: isScrolled ? '0%' : '60%' }}
+                        transition={{ duration: 0.5, ease: 'easeOut' }}
+                        className="h-1 mt-1 rounded-full bg-brand-orange/60"
+                    />
                     <motion.div
                         animate={{
                             height: isScrolled ? 0 : 'auto',
@@ -81,7 +87,7 @@ export default function Header() {
                         className="overflow-hidden"
                     >
                         <p className="text-lg font-medium text-accent/80">
-                            Sr. React Native Developer
+                            Sr. React JS / React Native Developer
                         </p>
                         <p className="text-sm text-accent/70 mt-1">
                             📍 Lahore | 
@@ -99,7 +105,7 @@ export default function Header() {
             
             <button
                 onClick={toggleTheme}
-                className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                className="p-2 rounded-full border border-brand-orange/30 hover:bg-brand-orange/10 transition-colors"
                 aria-label="Toggle theme"
             >
                 {theme === 'light' ? <FaMoon size={20} /> : <FaSun size={20} />}

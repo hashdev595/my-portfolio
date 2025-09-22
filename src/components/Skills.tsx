@@ -30,7 +30,7 @@ export default function Skills() {
             <h2 className="text-2xl font-semibold mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">
                 Skills
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 overflow-visible">
                 {skills.map((skill, idx) => (
                     <motion.div
                         key={idx}
@@ -51,7 +51,7 @@ export default function Skills() {
                             transition: { duration: 0.2 }
                         }}
                         className="bg-white dark:bg-gray-800 px-4 py-2 rounded-lg shadow-md hover:shadow-lg 
-                                 text-center text-gray-900 dark:text-gray-300 transition-all duration-300"
+                                 text-center text-gray-900 dark:text-gray-300 transition-all duration-300 overflow-visible will-change-transform transform-gpu"
                     >
                         {skill}
                     </motion.div>

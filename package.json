@@ -10,12 +10,16 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "fetch:screens": "node scripts/fetch-screenshots.mjs"
   },
   "dependencies": {
+    "cheerio": "^1.1.2",
     "framer-motion": "^12.23.12",
     "gh-pages": "^6.3.0",
+    "node-fetch": "^3.3.2",
     "react": "^18.2.0",
+    "react-ai-connect": "^0.1.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0"
   },

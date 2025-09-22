@@ -1,69 +1,18 @@
-# React + TypeScript + Vite
+# Portfolio (React + TypeScript + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project powers Hashim Ali's portfolio. It uses TailwindCSS and Framer Motion for a polished, animated UI.
 
-Currently, two official plugins are available:
+## Project Images
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Place screenshots under `public/images/projects/` with this convention:
 
-## Expanding the ESLint configuration
+- `<slug>-1.jpg`, `<slug>-2.jpg`, ...
+- Slug is derived from project name lowercased, non-alphanumerics replaced with `-`.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Examples:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- `Wisemarket` → `public/images/projects/wisemarket-1.jpg`, `wisemarket-2.jpg`, `wisemarket-3.jpg`
+- `Gorex v2` → `public/images/projects/gorex-v2-1.jpg`, `gorex-v2-2.jpg`
+- `ERP Handy` → `public/images/projects/erp-handy-1.jpg`, `erp-handy-2.jpg`
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The gallery auto-detects counts via `shotsFor()` in `src/components/Projects.tsx`. Update that function if you add more images for a project.
