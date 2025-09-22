@@ -11,6 +11,12 @@ const navItems = [
 ];
 
 export default function Sidebar() {
+  const scrollToId = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  };
   return (
     <aside className="hidden md:block md:col-span-4 lg:col-span-3 xl:col-span-3 pr-0 md:pr-6">
       <motion.div
@@ -28,7 +34,7 @@ export default function Sidebar() {
               className="w-16 h-16 rounded-full object-cover"
             />
             <div>
-              <h1 className="text-xl font-extrabold bg-clip-text dark:text-white text-black text-transparent bg-gradient-to-r from-brand.pink via-brand.purple to-brand.blue">
+              <h1 className="text-xl font-extrabold bg-clip-text dark:text-white text-black  bg-gradient-to-r from-brand.pink via-brand.purple to-brand.blue">
                 Hashim Ali
               </h1>
               <p className="text-sm text-gray-700 dark:text-gray-300">Sr. React Native Developer</p>
@@ -51,12 +57,13 @@ export default function Sidebar() {
           <ul className="space-y-2">
             {navItems.map((item) => (
               <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className="block px-3 py-2 rounded-lg text-sm text-gray-800 dark:text-gray-200 hover:bg-brand.purple/10 hover:dark:bg-brand.purple/20"
+                <button
+                  type="button"
+                  onClick={() => scrollToId(item.id)}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-gray-800 dark:text-gray-200 hover:bg-brand-orange/10 dark:hover:bg-brand-purple/20"
                 >
                   {item.label}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
