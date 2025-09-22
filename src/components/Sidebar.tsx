@@ -49,7 +49,7 @@ export default function Sidebar() {
 
         <nav className="relative overflow-hidden rounded-2xl p-4 border border-black/5 dark:border-white/10 bg-white/80 dark:bg-gray-900/70 backdrop-blur shadow">
           <ul className="space-y-2">
-            {navItems.map((item, idx) => (
+            {navItems.map((item) => (
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}

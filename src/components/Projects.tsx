@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const toSlug = (name: string) =>
   name
