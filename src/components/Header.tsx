@@ -106,7 +106,7 @@ export default function Header() {
             <div className="flex items-center gap-4">
                 {/* Download Resume */}
                 <a
-                    href="/assets/ReactNativeCV.pdf"
+                    href="/assets/HashimaliCV.pdf"
                     download
                     className="flex items-center gap-2 px-3 py-2 rounded-lg border border-brand-orange/30 hover:bg-brand-orange/10 transition-colors text-sm font-medium"
                 >
