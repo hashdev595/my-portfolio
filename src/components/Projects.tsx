@@ -106,10 +106,10 @@ export default function Projects() {
 
   return (
     <section className="py-12">
-      <h2 className="text-2xl font-semibold mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">
+      <h2 className="text-xl sm:text-2xl font-semibold mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">
         Projects
       </h2>
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         {projects.map((proj, idx) => (
           <motion.div
             key={idx}
@@ -122,9 +122,9 @@ export default function Projects() {
             className="group relative bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-visible will-change-transform transform-gpu"
           >
             <span className="pointer-events-none absolute -inset-px rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'radial-gradient(600px circle at var(--x,50%) var(--y,50%), rgba(244,153,26,0.18), transparent 40%)' }} />
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">{proj.name}</h3>
+            <div className="flex items-start justify-between gap-2 sm:gap-3">
+              <div className="min-w-0 flex-1">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white truncate">{proj.name}</h3>
                 <div className="mt-1 inline-flex items-center gap-2">
                   <span className="text-xs px-2 py-0.5 rounded-full bg-brand-orange/10 text-brand-orange dark:bg-brand-orange/20">{proj.type}</span>
                 </div>
@@ -134,7 +134,7 @@ export default function Projects() {
                   href={proj.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-semibold text-brand-orange hover:opacity-80"
+                  className="text-xs sm:text-sm font-semibold text-brand-orange hover:opacity-80 whitespace-nowrap"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -143,10 +143,10 @@ export default function Projects() {
               )}
             </div>
 
-            <p className="mt-2 text-gray-700 dark:text-gray-300">{proj.description}</p>
+            <p className="mt-2 text-sm sm:text-base text-gray-700 dark:text-gray-300">{proj.description}</p>
 
             {shotsFor(proj.name) > 0 && (
-              <div className="mt-4 grid grid-cols-3 gap-2">
+              <div className="mt-4 grid grid-cols-4 sm:grid-cols-3 gap-2">
                 {Array.from({ length: shotsFor(proj.name) }).map((_, i) => (
                   <button
                     key={i}
@@ -157,7 +157,7 @@ export default function Projects() {
                     <img
                       src={`/images/projects/${toSlug(proj.name)}-${i + 1}.jpg`}
                       alt={`${proj.name} screenshot ${i + 1}`}
-                      className="h-28 w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/s:scale-[1.03]"
+                      className="h-20 sm:h-28 w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/s:scale-[1.03]"
                       loading="lazy"
                       onError={(e) => {
                         const btn = (e.currentTarget.closest('button') as HTMLElement | null);

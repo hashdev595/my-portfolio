@@ -14,7 +14,7 @@ export default function Sidebar() {
   const scrollToId = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
   return (
@@ -70,6 +70,8 @@ export default function Sidebar() {
         </nav>
       </motion.div>
     </aside>
+    
+    
   );
 }
 

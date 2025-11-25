@@ -47,11 +47,11 @@ const experiences = [
   
   export default function Experience() {
     return (
-      <section className="py-12">
-        <h2 className="text-2xl font-semibold mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">
+      <section className="py-8 sm:py-12">
+        <h2 className="text-xl sm:text-2xl font-semibold mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">
           Experience
         </h2>
-        <div className="space-y-8 overflow-visible">
+        <div className="space-y-6 sm:space-y-8 overflow-visible">
           {experiences.map((exp, idx) => (
             <motion.div 
               key={idx} 
@@ -60,12 +60,12 @@ const experiences = [
               viewport={{ once: true }}
               transition={{ type: 'spring', stiffness: 80, damping: 18, delay: idx * 0.06 }}
               whileHover={{ scale: 1.02, y: -2 }}
-              className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-visible will-change-transform transform-gpu"
+              className="bg-white dark:bg-gray-800 p-4 sm:p-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-visible will-change-transform transform-gpu"
             >
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">{exp.company}</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">{exp.company}</h3>
               <p className="italic text-sm text-gray-600 dark:text-gray-400">{exp.role}</p>
-              <p className="text-sm text-brand-orange font-medium">{exp.duration}</p>
-              <ul className="list-disc ml-6 mt-2 space-y-1 text-gray-700 dark:text-gray-300">
+              <p className="text-xs sm:text-sm text-brand-orange font-medium">{exp.duration}</p>
+              <ul className="list-disc ml-5 sm:ml-6 mt-2 space-y-1 text-sm sm:text-base text-gray-700 dark:text-gray-300">
                 {exp.details.map((d, i) => (
                   <li key={i}>{d}</li>
                 ))}

@@ -89,11 +89,11 @@ export default function About() {
   }, []);
 
   return (
-    <section className="py-12">
-      <h2 className="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">
+    <section className="py-8 sm:py-12">
+      <h2 className="text-xl sm:text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">
         About Me
       </h2>
-      <p className="text-primary-300 leading-relaxed">
+      <p className="text-sm sm:text-base text-primary-300 leading-relaxed">
         {displayedText}
         <span className={`${isTyping ? 'animate-pulse' : 'hidden'}`}>|</span>
       </p>

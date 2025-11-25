@@ -84,8 +84,8 @@ const App = (): JSX.Element => {
           )}
         </AnimatePresence>
         <Header />
-        <div className="px-6 md:px-10 lg:px-16 pt-40">
-          <div className="grid md:grid-cols-12 gap-6">
+        <div className="px-4 sm:px-6 md:px-10 lg:px-16 pt-32 sm:pt-40">
+          <div className="grid md:grid-cols-12 gap-4 sm:gap-6">
             <Sidebar />
             <AnimatePresence>
               <motion.main
@@ -103,7 +103,7 @@ const App = (): JSX.Element => {
                       once: true,
                       margin: "-100px", // Trigger animation slightly before section is in view
                     }}
-                    className="mb-16 overflow-visible" // Added margin bottom for spacing
+                    className="mb-12 sm:mb-16 overflow-visible scroll-mt-24 sm:scroll-mt-28 md:scroll-mt-32"
                   >
                     <Component />
                   </motion.div>
